@@ -1,0 +1,32 @@
+.popup__saved-button {
+    min-width: 358px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+    text-align: center;
+    color: #FFFFFF;
+    border: none;
+    background: none;
+    background-color: #000000;
+    margin: 18px auto 0;
+    padding: 12px 0 16px;
+    cursor: pointer;
+    border-radius: 2px;
+    display: flex;
+    justify-content: center;
+}
+
+.popup__saved-button:hover {
+    opacity: 80%;
+}
+
+@media screen and (max-width: 435px) {
+    .popup__saved-button {
+
+        min-width: 238px;
+        font-size: 14px;
+        line-height: 17px;
+
+    }
+}

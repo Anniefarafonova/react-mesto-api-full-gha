@@ -1,0 +1,29 @@
+.form__item {
+    border: 0;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: transparent;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 17px;
+    color: #000000;
+    padding: 0 0 5px;
+    margin: 8px 0 0;
+    border-bottom: 1px solid rgb(0, 0, 0, 0.2);
+    outline: none;
+}
+.form__item:focus {
+    outline-color: rgba(58, 134, 145, 0.625);
+}
+@media screen and (max-width: 435px) {
+    .form__item {
+        margin: 0;
+        padding: 0 0 10px;
+    }
+}
+
+
+
+
+

@@ -1,0 +1,25 @@
+.login__saved-button{
+    min-width: 358px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+    text-align: center;
+    color: #000000;
+    border: none;
+    background: none;
+    background-color: #ffffff;
+    margin: 18px auto 0;
+    padding: 12px 0 16px;
+    cursor: pointer;
+    border-radius: 2px;
+    display: flex;
+    justify-content: center;
+
+}
+@media screen and (max-width: 660px) {
+    .login__saved-button {
+        min-width: 260px;
+      
+     }
+ }

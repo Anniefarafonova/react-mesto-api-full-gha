@@ -1,0 +1,6 @@
+.popup__infoTooltip-logo {
+    background-image: url(/src/images/Union.png);
+    background-repeat: no-repeat;
+    width: 120px;
+    height: 120px;
+}

@@ -1,0 +1,9 @@
+.form__container-texts_login {
+    margin-bottom: 216px;
+}
+
+@media screen and (max-width: 535px) {
+    .form__container-texts_login {
+        max-width: 260px;
+    }
+}

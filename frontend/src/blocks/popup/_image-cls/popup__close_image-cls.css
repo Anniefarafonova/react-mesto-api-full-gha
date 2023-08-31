@@ -1,0 +1,13 @@
+.popup__close_image-cls{
+    right: -40px;
+    top: -40px;
+    
+}
+@media screen and (max-width: 660px) {
+    .popup__close_image-cls {
+        width: 20px;
+        height: 20px;
+        right: -2px;
+        top: -30px;
+     }
+ }
