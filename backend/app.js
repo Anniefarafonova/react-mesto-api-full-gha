@@ -12,7 +12,7 @@ const NotFoundError = require('./errors/NotFoundError');
 const { postUsers, login } = require('./controllers/users');
 
 // Слушаем 3000 порт
-const { PORT = 3000, DB_URL = 'mongodb://127.0.0.1:27017/mestodb' } = process.env;
+const { PORT = 80, DB_URL = 'mongodb://127.0.0.1:27017/mestodb' } = process.env;
 // Создаем приложение
 const app = express();
 
