@@ -9,8 +9,7 @@ const { JWT_SECRET = 'mesto-secret' } = process.env;
 const BadRequestError = require('../errors/BadRequestError');
 const NotFoundError = require('../errors/NotFoundError');
 const ConflictingRequest = require('../errors/ConflictingRequest');
-// const ForbiddenError = require('../errors/ForbiddenError');
-// const UnauthorizedErrors = require('../errors/UnauthorizedErrors');
+
 
 // функция создание юзера
 module.exports.postUsers = (req, res, next) => {
