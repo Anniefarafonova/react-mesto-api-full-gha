@@ -32,7 +32,7 @@ mongoose.connect(DB_URL, {
 
 app.use(requestLogger);
 
-app.get('/crash-test', () => {
+usersRout.route.get('/crash-test', () => {
   setTimeout(() => {
     throw new Error('Сервер сейчас упадёт');
   }, 0);
@@ -54,6 +54,12 @@ app.post('/signup', celebrate({
     password: Joi.string().min(8).required(),
   }),
 }), postUsers);
+
+app.get('/crash-test', () => {
+  setTimeout(() => {
+    throw new Error('Сервер сейчас упадёт');
+  }, 0);
+});
 
 // авторизация
 app.use(auth);
