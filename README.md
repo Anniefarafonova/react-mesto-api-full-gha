@@ -6,7 +6,7 @@
 
 ## Ссылки на проект
 
-IP-адрес 158.160.46.203
+IP 158.160.46.203
 
 Frontend https://mesto.practicum15.nomoredomainsicu.ru
 
