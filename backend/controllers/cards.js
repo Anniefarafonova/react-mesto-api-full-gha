@@ -92,6 +92,7 @@ module.exports.putCardsIdLike = (req, res, next) => {
       }
     });
 };
+
 // функция удаления лайк
 module.exports.deleteCardsIDLike = (req, res, next) => {
   Card.findByIdAndUpdate(req.params.cardId, { $pull: { likes: req.user._id } }, { new: true })
