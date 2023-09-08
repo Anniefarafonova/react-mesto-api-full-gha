@@ -10,7 +10,6 @@ const BadRequestError = require('../errors/BadRequestError');
 const NotFoundError = require('../errors/NotFoundError');
 const ConflictingRequest = require('../errors/ConflictingRequest');
 
-
 // функция создание юзера
 module.exports.postUsers = (req, res, next) => {
   const {
