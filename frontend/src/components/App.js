@@ -38,6 +38,30 @@ function App() {
   const [isDone, setIsDone] = React.useState(false);
   // стейт email
   const [email, setEmail] = React.useState('');
+  //проверка токена
+  useEffect(() => {
+    getTokenCheck();
+  }, [])
+
+  function getTokenCheck() {
+    const token = localStorage.getItem('token');
+    if (token) {
+      Auth
+        .tokenCheck(token)
+        .then((res) => {
+          if (res) {
+            setLoggedIn(true);
+            navigate("/", { replace: true })
+            setEmail(res.email)
+            console.log(email);
+          }
+        })
+        .catch((error) => {
+          console.log(email);
+          console.error(`Ошибка проверки токена ${error}`)
+        })
+    }
+  }
 
   //функция открытия Edit
   function handleEditProfileClick() {
@@ -81,20 +105,21 @@ function App() {
   }
   //Функция лайка
   function handleCardLike(card) {
-    const isLiked = card.likes.some(i => i._id === currentUser._id);
+    const isLiked = card.likes.some(i => i === currentUser._id);
     api
-      .changeLikeCardStatus(card._id, !isLiked)
+      .changeLikeCardStatus(card._id, !isLiked, localStorage.token)
       .then((newCard) => {
         setCard((state) => state.map((c) => c._id === card._id ? newCard : c));
       })
       .catch((error) => console.error(`Ошибка like ${error}`));
   }
 
+
   //Функция удаления
   function handleCardDeleteSubmit(evt) {
     evt.preventDefault()
     api
-      .deleteCard(deleteId)
+      .deleteCard(deleteId, localStorage.token)
       .then(() => {
         setCard(card.filter((card) => {
           return card._id !== deleteId
@@ -106,7 +131,7 @@ function App() {
   //функция отображения данных Edit(описание)
   function handleUpdateUser(data) {
     api
-      .setUserInfo(data)
+      .setUserInfo(data, localStorage.token)
       .then((data) => {
         setCurrentUser(data)
         closeAllPopups()
@@ -116,7 +141,7 @@ function App() {
   //функция отображения аватарки
   function handleUpdateAvatar(data) {
     api
-      .setUserAvatar(data)
+      .setUserAvatar(data, localStorage.token)
       .then((data) => {
         setCurrentUser(data)
         closeAllPopups()
@@ -126,7 +151,7 @@ function App() {
   //функция добавления карточки
   function handleAddPlaceSubmit(data) {
     api
-      .addCard(data)
+      .addCard(data, localStorage.token)
       .then((data) => {
         setCard([data, ...card]);
         closeAllPopups()
@@ -165,28 +190,7 @@ function App() {
         setIsDone(false)
       })
   }
-  //проверка токена
-  useEffect(() => {
-    getTokenCheck();
-  }, [])
-
-  function getTokenCheck() {
-    const token = localStorage.getItem('token');
-    if (token) {
-      Auth
-        .tokenCheck(token)
-        .then((res) => {
-          if (res) {
-            setLoggedIn(true);
-            navigate("/", { replace: true })
-            setEmail(res.data.email)
-          }
-        })
-        .catch((error) => {
-          console.error(`Ошибка проверки токена ${error}`)
-        })
-    }
-  }
+  
   function signOut() {
     localStorage.removeItem('token');
     setLoggedIn(false);
@@ -196,7 +200,7 @@ function App() {
   //функция Api
   useEffect(() => {
     loggedIn &&
-      Promise.all([api.getInfo(), api.getCard()])
+      Promise.all([api.getInfo(localStorage.token), api.getCard(localStorage.token)])
         .then(([dataUser, dataCard]) => {
           setCurrentUser(dataUser)
           setCard(dataCard)
@@ -250,27 +254,3 @@ function App() {
 
 
 export default App;
-
-
-
-
-{/* <Route path="/"
-            element={
-              <ProtectedRouteElement
-                element={(props) => (
-                  <Main
-                    onEditProfile={handleEditProfileClick}
-                    onEditAvatar={handleEditAvatarClick}
-                    onAddPlace={handleAddPlaceClick}
-                    onCardClick={handleCardClick}
-                    onDelete={handleDeleteClick}
-                    onCardLike={handleCardLike}
-                    signOut={signOut}
-                    card={card}
-                    email={email}
-                    {...props}
-                  />
-                )}
-                loggedIn={loggedIn} />
-            }
-          /> */}

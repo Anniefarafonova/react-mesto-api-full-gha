@@ -12,11 +12,11 @@ module.exports.postCards = (req, res, next) => {
   Card.create({ name, link, owner: req.user._id })
     .then((сard) => {
       res.status(httpConstants.HTTP_STATUS_CREATED).send(сard);
+      // Card.findById(сard._id)
+      //   .orFail()
+      //   .populate('owner')
+      // .then((сards) => res.status(httpConstants.HTTP_STATUS_CREATED).send(сards));
     })
-    //   Card.findById(сard._id)
-    //     .populate('owner')
-    //     .then((data) => res.status(201).send(data));
-    // })
     .catch((err) => {
       if (err instanceof mongoose.Error.ValidationError) {
         next(new BadRequestError('Переданы некорректные данные.'));
@@ -29,7 +29,7 @@ module.exports.postCards = (req, res, next) => {
 // функция возвр всех карточек
 module.exports.getCards = (req, res, next) => {
   Card.find({})
-    .populate(['owner', 'likes'])
+    // .populate(['owner', 'likes'])
     .then((сard) => {
       res.status(httpConstants.HTTP_STATUS_OK).send(сard);
     })
@@ -96,7 +96,7 @@ module.exports.putCardsIdLike = (req, res, next) => {
 module.exports.deleteCardsIDLike = (req, res, next) => {
   Card.findByIdAndUpdate(req.params.cardId, { $pull: { likes: req.user._id } }, { new: true })
     .orFail()
-    .populate(['owner', 'likes'])
+    // .populate(['owner', 'likes'])
     .then((card) => {
       res.status(httpConstants.HTTP_STATUS_OK).send(card);
     })
