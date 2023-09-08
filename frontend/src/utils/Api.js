@@ -1,9 +1,8 @@
 class Api {
   constructor(options) {
     this._url = options.baseUrl
-    // this._headers = options.headers
-    // this._authorization = options.headers.authorization
   }
+
   _checkResponse(res) {
     if (res.ok) {
       return res.json();
@@ -115,11 +114,7 @@ class Api {
 
 
 const api = new Api({
-  baseUrl: 'http://localhost:3000',
-  // headers: {
-  //     authorization: '26786be3-fed9-4d83-9ae2-1348eee1b7d5',
-  //     'Content-Type': 'application/json'
-  // }
+  baseUrl: 'https://api.mesto.practicum15.nomoredomainsicu.ru',
 });
 
 export default api

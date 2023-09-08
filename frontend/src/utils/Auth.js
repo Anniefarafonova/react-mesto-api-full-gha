@@ -1,5 +1,4 @@
-export const BASE_URL = 'http://localhost:3000';
-//'api.mesto.practicum15.nomoredomainsicu.ru';
+export const BASE_URL = 'https://api.mesto.practicum15.nomoredomainsicu.ru';
 
 function checkStatus(res) {
   if (res.ok) {
